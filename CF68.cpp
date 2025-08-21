@@ -29,20 +29,18 @@ class Solution {
             n=i+1;
             long long j = 0;
 
-            while(i>0){
             for(i=n-1;i>=0;i--)
             {
                 if(v[n-1-j]*(n-i)>=x){
                     count++;
                     n=n-1-j;
                     j=0;
-                    break;
+                    continue;
                 }
                 else{
                 j++;
                 }
             }
-        }
         cout<<count<<endl;
         }
 };
