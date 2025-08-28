@@ -11,7 +11,7 @@ public:
         cin >> x >> s;
 
         for (int k = 0; k < 6; k++) {
-            // only search if s can fit inside x
+            
             if ((int)x.length() >= m) {
                 for (int i = 0; i <= (int)x.length() - m; i++) {
                     int j = 0;
@@ -19,14 +19,14 @@ public:
                         j++;
                     }
                     if (j == m) {
-                        cout << k << "\n"; // found
+                        cout << k << "\n";
                         return;
                     }
                 }
             }
-            x += x; // double the string
+            x += x; 
         }
-        cout << -1 << "\n"; // not found
+        cout << -1 << "\n";
     }
 };
 
