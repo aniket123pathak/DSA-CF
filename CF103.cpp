@@ -13,7 +13,6 @@ class Solution {
                 cout<<"-1\n";
                 return;
             }
-
             if(x<y){
                 cout<<"2\n";
                 return;
