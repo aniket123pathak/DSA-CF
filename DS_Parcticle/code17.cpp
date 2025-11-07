@@ -1,12 +1,10 @@
 #include <iostream>
 #include <string>
-#include <vector>      // For storing the catalog
-#include <algorithm>   // For std::sort
-#include <iomanip>     // For std::setprecision
+#include <vector>      
+#include <iomanip>     
 
 using namespace std;
 
-// Structure to define a Product
 struct Product {
     int id;
     string name;
@@ -14,7 +12,48 @@ struct Product {
     double rating;
 };
 
-// Helper function to display the catalog's current state
+void swapProducts(Product& a, Product& b) {
+    Product temp = a;
+    a = b;
+    b = temp;
+}
+
+void bubbleSortByPrice(vector<Product>& catalog) {
+    int n = catalog.size();
+    if (n == 0) return;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (catalog[j].price > catalog[j + 1].price) {
+                swapProducts(catalog[j], catalog[j + 1]);
+            }
+        }
+    }
+}
+
+void bubbleSortByRating(vector<Product>& catalog) {
+    int n = catalog.size();
+    if (n == 0) return;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (catalog[j].rating < catalog[j + 1].rating) {
+                swapProducts(catalog[j], catalog[j + 1]);
+            }
+        }
+    }
+}
+
+void bubbleSortByName(vector<Product>& catalog) {
+    int n = catalog.size();
+    if (n == 0) return;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (catalog[j].name > catalog[j + 1].name) {
+                swapProducts(catalog[j], catalog[j + 1]);
+            }
+        }
+    }
+}
+
 void displayCatalog(const vector<Product>& catalog) {
     cout << "\n--- Current Product Catalog ---" << endl;
     if (catalog.empty()) {
@@ -22,7 +61,6 @@ void displayCatalog(const vector<Product>& catalog) {
         return;
     }
     
-    // Loop through and print each product
     for (const auto& product : catalog) {
         cout << "--------------------" << endl;
         cout << "ID    : " << product.id << endl;
@@ -36,20 +74,17 @@ void displayCatalog(const vector<Product>& catalog) {
 int main() {
     vector<Product> catalog;
     
-    // Pre-populate with sample data to demonstrate sorting
     catalog.push_back({101, "Laptop", 999.99, 4.7});
     catalog.push_back({102, "Smartphone", 699.50, 4.5});
     catalog.push_back({103, "Headphones", 149.00, 4.2});
     catalog.push_back({104, "Mouse", 49.99, 4.8});
     catalog.push_back({105, "Keyboard", 79.99, 4.6});
 
-    // Set cout to always show two decimal places for currency
     cout << fixed << setprecision(2);
     
     int choice;
 
     while (true) {
-        // Show the catalog in its current (potentially sorted) state
         displayCatalog(catalog);
 
         cout << "\n--- Sort Options ---" << endl;
@@ -61,32 +96,28 @@ int main() {
         
         cin >> choice;
 
+        if (catalog.empty() && choice >= 1 && choice <= 3) {
+            cout << "Catalog is empty, nothing to sort." << endl;
+            continue;
+        }
+
         switch (choice) {
-            case 1: // Sort by Price (low to high)
-                sort(catalog.begin(), catalog.end(), 
-                     [](const Product& a, const Product& b) {
-                    return a.price < b.price;
-                });
+            case 1: 
+                bubbleSortByPrice(catalog);
                 cout << "Catalog sorted by Price (Low to High)." << endl;
                 break;
 
-            case 2: // Sort by Ratings (high to low)
-                sort(catalog.begin(), catalog.end(), 
-                     [](const Product& a, const Product& b) {
-                    return a.rating > b.rating; // Note: > for descending
-                });
+            case 2: 
+                bubbleSortByRating(catalog);
                 cout << "Catalog sorted by Rating (High to Low)." << endl;
                 break;
 
-            case 3: // Sort by Name (alphabetically)
-                sort(catalog.begin(), catalog.end(), 
-                     [](const Product& a, const Product& b) {
-                    return a.name < b.name;
-                });
+            case 3: 
+                bubbleSortByName(catalog);
                 cout << "Catalog sorted by Name (Alphabetical)." << endl;
                 break;
 
-            case 4: // Exit
+            case 4: 
                 cout << "Exiting." << endl;
                 return 0;
 

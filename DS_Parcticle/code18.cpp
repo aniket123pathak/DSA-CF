@@ -1,121 +1,126 @@
 #include <iostream>
 #include <string>
-#include <vector>      // For dynamic array of employees
-#include <algorithm>   // For std::sort
-#include <iomanip>     // For std::setprecision
+#include <vector>      
+#include <iomanip>     
 
 using namespace std;
 
-// Define the structure for an Employee record
-struct Employee {
+struct Product {
     int id;
     string name;
-    string department;
-    double salary;
+    double price;
+    double rating;
 };
 
-// Function to display a single employee's details
-void displayEmployee(const Employee& emp) {
-    cout << "---------------------------------" << endl;
-    cout << "ID        : " << emp.id << endl;
-    cout << "Name      : " << emp.name << endl;
-    cout << "Department: " << emp.department << endl;
-    cout << "Salary    : $" << emp.salary << endl;
+void swapProducts(Product& a, Product& b) {
+    Product temp = a;
+    a = b;
+    b = temp;
+}
+
+void bubbleSortByPrice(vector<Product>& catalog) {
+    int n = catalog.size();
+    if (n == 0) return;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (catalog[j].price > catalog[j + 1].price) {
+                swapProducts(catalog[j], catalog[j + 1]);
+            }
+        }
+    }
+}
+
+void bubbleSortByRating(vector<Product>& catalog) {
+    int n = catalog.size();
+    if (n == 0) return;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (catalog[j].rating < catalog[j + 1].rating) {
+                swapProducts(catalog[j], catalog[j + 1]);
+            }
+        }
+    }
+}
+
+void bubbleSortByName(vector<Product>& catalog) {
+    int n = catalog.size();
+    if (n == 0) return;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (catalog[j].name > catalog[j + 1].name) {
+                swapProducts(catalog[j], catalog[j + 1]);
+            }
+        }
+    }
+}
+
+void displayCatalog(const vector<Product>& catalog) {
+    cout << "\n--- Current Product Catalog ---" << endl;
+    if (catalog.empty()) {
+        cout << "Catalog is empty." << endl;
+        return;
+    }
+    
+    for (const auto& product : catalog) {
+        cout << "--------------------" << endl;
+        cout << "ID    : " << product.id << endl;
+        cout << "Name  : " << product.name << endl;
+        cout << "Price : $" << product.price << endl;
+        cout << "Rating: " << product.rating << "/5.0" << endl;
+    }
+    cout << "--------------------" << endl;
 }
 
 int main() {
-    vector<Employee> employees;
+    vector<Product> catalog;
+    
+    catalog.push_back({101, "Laptop", 999.99, 4.7});
+    catalog.push_back({102, "Smartphone", 699.50, 4.5});
+    catalog.push_back({103, "Headphones", 149.00, 4.2});
+    catalog.push_back({104, "Mouse", 49.99, 4.8});
+    catalog.push_back({105, "Keyboard", 79.99, 4.6});
+
+    cout << fixed << setprecision(2);
+    
     int choice;
 
-    // Set floating point output format for currency
-    cout << fixed << setprecision(2);
-
     while (true) {
-        cout << "\n--- Employee Management System ---" << endl;
-        cout << "1. Add Employee" << endl;
-        cout << "2. Display All Employees" << endl;
-        cout << "3. Sort by ID (Ascending)" << endl;
-        cout << "4. Sort by Name (Alphabetical)" << endl;
-        cout << "5. Sort by Salary (Descending)" << endl;
-        cout << "6. Exit" << endl;
+        displayCatalog(catalog);
+
+        cout << "\n--- Sort Options ---" << endl;
+        cout << "1. Sort by Price (Low to High)" << endl;
+        cout << "2. Sort by Rating (High to Low)" << endl;
+        cout << "3. Sort by Name (Alphabetical)" << endl;
+        cout << "4. Exit" << endl;
         cout << "Enter your choice: ";
         
         cin >> choice;
 
+        if (catalog.empty() && choice >= 1 && choice <= 3) {
+            cout << "Catalog is empty, nothing to sort." << endl;
+            continue;
+        }
+
         switch (choice) {
-            case 1: { // Enter and store records
-                Employee newEmployee;
-                cout << "Enter Employee ID: ";
-                cin >> newEmployee.id;
-
-                // Consume the newline character left in the buffer by cin
-                cin.ignore(); 
-
-                cout << "Enter Name: ";
-                getline(cin, newEmployee.name);
-
-                cout << "Enter Department: ";
-                getline(cin, newEmployee.department);
-
-                cout << "Enter Salary: $";
-                cin >> newEmployee.salary;
-
-                employees.push_back(newEmployee);
-                cout << "Employee added successfully." << endl;
+            case 1: 
+                bubbleSortByPrice(catalog);
+                cout << "Catalog sorted by Price (Low to High)." << endl;
                 break;
-            }
-            case 2: { // Display all records
-                if (employees.empty()) {
-                    cout << "No employee records found." << endl;
-                } else {
-                    cout << "\n--- All Employee Records ---" << endl;
-                    for (const auto& emp : employees) {
-                        displayEmployee(emp);
-                    }
-                    cout << "---------------------------------" << endl;
-                }
+
+            case 2: 
+                bubbleSortByRating(catalog);
+                cout << "Catalog sorted by Rating (High to Low)." << endl;
                 break;
-            }
-            case 3: { // Sort by Employee ID (Ascending)
-                if (employees.empty()) {
-                    cout << "No employees to sort." << endl;
-                } else {
-                    sort(employees.begin(), employees.end(), 
-                         [](const Employee& a, const Employee& b) {
-                        return a.id < b.id;
-                    });
-                    cout << "Employees sorted by ID (Ascending)." << endl;
-                }
+
+            case 3: 
+                bubbleSortByName(catalog);
+                cout << "Catalog sorted by Name (Alphabetical)." << endl;
                 break;
-            }
-            case 4: { // Sort by Name (Alphabetical)
-                if (employees.empty()) {
-                    cout << "No employees to sort." << endl;
-                } else {
-                    sort(employees.begin(), employees.end(), 
-                         [](const Employee& a, const Employee& b) {
-                        return a.name < b.name;
-                    });
-                    cout << "Employees sorted by Name (Alphabetical)." << endl;
-                }
-                break;
-            }
-            case 5: { // Sort by Salary (Descending)
-                if (employees.empty()) {
-                    cout << "No employees to sort." << endl;
-                } else {
-                    sort(employees.begin(), employees.end(), 
-                         [](const Employee& a, const Employee& b) {
-                        return a.salary > b.salary; // Note: > for descending
-                    });
-                    cout << "Employees sorted by Salary (Descending)." << endl;
-                }
-                break;
-            }
-            case 6: { // Exit
+
+            case 4: 
                 cout << "Exiting." << endl;
                 return 0;
-            }
+
             default:
                 cout << "Invalid choice. Please try again." << endl;
                 break;
