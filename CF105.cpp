@@ -13,10 +13,13 @@ class Solution {
             for(i=0;i<n;i++){
                 cin>>a[i];
             }
+
+
             cin>>x;
             long long maxEle = *max_element(a.begin(),a.end());
             long long minEle = *min_element(a.begin(),a.end());
 
+            
             if(x>=minEle && x<=maxEle){
                 cout<<"YES\n";
                 return;
