@@ -1,5 +1,0 @@
---- Student Data Summary ---
-Number of students: 4
-Average age of students: 25.50
-Oldest student: Smita (Age: 38)
-Youngest student: Shruti (Age: 17)
