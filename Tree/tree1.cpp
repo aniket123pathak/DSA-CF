@@ -136,6 +136,16 @@ int heightOfTree(Node *root)
     return max(leftHeight, rightHeight) + 1;
 }
 
+int nodeCount(Node* root){
+    if(root==NULL){
+        return 0;
+    }
+    int leftNodes = nodeCount(root->left);
+    int rightNodes = nodeCount(root->right);
+
+    return leftNodes+rightNodes+1;
+}
+
 int main()
 {
     vector<int> nodes = {1, 2, 3, -1, -1, 4, -1, 5, 6, 7, 8, -1, -1, 9, 10, 11, 12, -1, 99, -1, -1, -1, -1, -1, -1, -1};
@@ -152,9 +162,9 @@ int main()
     cout << "Levelorder TraverSal : \n";
     levelOrderTraversal(root);
     cout << endl;
-
     int height = heightOfTree(root);
     cout << "Height Of the Tree is : " << height << endl;
-
+    int noOfNodes = nodeCount(root);
+    cout<<"Number of Nodes in tree : "<<noOfNodes<<endl;
     return 0;
 }
