@@ -136,14 +136,29 @@ int heightOfTree(Node *root)
     return max(leftHeight, rightHeight) + 1;
 }
 
-int nodeCount(Node* root){
-    if(root==NULL){
+int nodeCount(Node *root)
+{
+    if (root == NULL)
+    {
         return 0;
     }
     int leftNodes = nodeCount(root->left);
     int rightNodes = nodeCount(root->right);
 
-    return leftNodes+rightNodes+1;
+    return leftNodes + rightNodes + 1;
+}
+
+int sumOfNodes(Node *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+
+    int leftSum = sumOfNodes(root->left);
+    int rightSum = sumOfNodes(root->right);
+
+    return root->data + leftSum + rightSum;
 }
 
 int main()
@@ -165,6 +180,8 @@ int main()
     int height = heightOfTree(root);
     cout << "Height Of the Tree is : " << height << endl;
     int noOfNodes = nodeCount(root);
-    cout<<"Number of Nodes in tree : "<<noOfNodes<<endl;
+    cout << "Number of Nodes in tree : " << noOfNodes << endl;
+    int sumOfNode = sumOfNodes(root);
+    cout << "Sum of Nodes in tree : " << sumOfNode << endl;
     return 0;
 }
