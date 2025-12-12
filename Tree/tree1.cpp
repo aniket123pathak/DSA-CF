@@ -123,6 +123,19 @@ void levelOrderTraversal(Node *root)
     }
 }
 
+int heightOfTree(Node *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+
+    int leftHeight = heightOfTree(root->left);
+    int rightHeight = heightOfTree(root->right);
+
+    return max(leftHeight, rightHeight) + 1;
+}
+
 int main()
 {
     vector<int> nodes = {1, 2, 3, -1, -1, 4, -1, 5, 6, 7, 8, -1, -1, 9, 10, 11, 12, -1, 99, -1, -1, -1, -1, -1, -1, -1};
@@ -139,6 +152,9 @@ int main()
     cout << "Levelorder TraverSal : \n";
     levelOrderTraversal(root);
     cout << endl;
+
+    int height = heightOfTree(root);
+    cout << "Height Of the Tree is : " << height << endl;
 
     return 0;
 }
