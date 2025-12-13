@@ -8,12 +8,13 @@ class Solution
 public:
     void solve()
     {
-        long long n, i;
+        long long n, i,totSum=0;
         cin >> n;
         vector<long long> a(n);
         for (i = 0; i < n; i++)
         {
             cin >> a[i];
+            totSum+=a[i];
         }
 
         sort(a.begin(), a.end());
@@ -66,6 +67,7 @@ public:
         long long j = 0;
         i = 1;
 
+
         while (i <= even.size())
         {
             sum[i] = sum[i - 1] + even[j];
@@ -75,17 +77,14 @@ public:
 
         while (i < n)
         {
-            if (i - 2 <= 0)
-            {
-                sum[i] = 0;
-            }
-            else
-            {
-                sum[i] = sum[i - 2];
-            }
+            sum[i] = sum[i - 2];
             i++;
         }
 
+        if(totSum%2==0){
+            sum[n-1]=0;
+        }
+    
         for (i = 0; i < n; i++)
         {
             cout << sum[i] << " ";
