@@ -11,47 +11,30 @@ class Solution {
 public:
     void solve()
     {
-        ll n,m,k,i;
-        cin>>n>>m>>k;
-        vector<ll>a(n);
-        for(i=0;i<n;i++){
-           cin>>a[i];
-        }
-        vector<ll>b(m);
-        for(i=0;i<m;i++){
-           cin>>b[i];
-        }
-        sort(b.begin(),b.end());
-
+        ll n,i;
+        cin>>n;
         string s;
         cin>>s;
-        
-        ll x=0;
-        
-        for(i=0;i<k;i++){
-            if(a[i]=='L'){
-                x--;
+
+        vector<ll>hash(26);
+
+        for(i=0;i<n;i++){
+            if(s[i]>=97){
+                hash[s[i]-'a']++;
             }
             else{
-                x++;
+                hash[s[i]-'A']++;
             }
         }
+        sort(hash.begin(),hash.end());
 
-
-
-
-
-
-
-
-
-
-
-
+        cout<<hash[24]+hash[25]<<endl;
     }
 };
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     Solution s;
     int tc;
     cin >> tc;

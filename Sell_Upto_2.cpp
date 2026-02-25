@@ -11,40 +11,38 @@ class Solution {
 public:
     void solve()
     {
-        ll n,m,k,i;
-        cin>>n>>m>>k;
+        ll n,i;
+        cin>>n;
         vector<ll>a(n);
         for(i=0;i<n;i++){
            cin>>a[i];
         }
-        vector<ll>b(m);
-        for(i=0;i<m;i++){
-           cin>>b[i];
+        if(n==1){
+            cout<<a[0]<<endl;
         }
-        sort(b.begin(),b.end());
 
-        string s;
-        cin>>s;
-        
-        ll x=0;
-        
-        for(i=0;i<k;i++){
-            if(a[i]=='L'){
-                x--;
+        vector<pair<ll,ll>>pr(n);
+        for(i=0;i<n;i++){
+            pr[i].first=a[i];
+            pr[i].second=a[i]*2;
+        }
+        ll cost = 0;
+        ll cost2=0;
+        vector<ll>days;
+
+        for(i=0;i<n-1;i++){
+            if(a[i+1]>a[i]){
+                days.push_back(a[i]);
             }
             else{
-                x++;
+                days.push_back(a[i]);
             }
         }
+        if(!days.empty()){
+            if()
+        }
 
-
-
-
-
-
-
-
-
+        cout<<cost<<endl;
 
 
 

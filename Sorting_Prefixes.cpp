@@ -11,41 +11,28 @@ class Solution {
 public:
     void solve()
     {
-        ll n,m,k,i;
-        cin>>n>>m>>k;
+        ll n,i;
+        cin>>n;
         vector<ll>a(n);
         for(i=0;i<n;i++){
            cin>>a[i];
         }
-        vector<ll>b(m);
-        for(i=0;i<m;i++){
-           cin>>b[i];
+        if(is_sorted(a.begin(),a.end())){
+            cout<<"0\n";
+            return;
         }
-        sort(b.begin(),b.end());
-
-        string s;
-        cin>>s;
-        
-        ll x=0;
-        
-        for(i=0;i<k;i++){
-            if(a[i]=='L'){
-                x--;
-            }
-            else{
-                x++;
-            }
+        if(is_sorted(a.begin(),a.end(),greater<ll>())){
+            cout<<"1\n";
+            return;
         }
 
-
-
-
-
-
-
-
-
-
+        for(i=n-1;i>=0;i--){
+            if(a[i]!=i+1){
+                cout<<a[i]<<endl;
+                return;
+            }
+        }
+        
 
 
     }

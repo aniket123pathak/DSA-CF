@@ -1,8 +1,5 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
-
 #define ll long long
 #define v(a,n) vector<long long> a(n)
 #define fin(i,x,n,a) for(i=x;i<n;i++) cin>>a[i]
@@ -18,29 +15,21 @@ public:
         for(i=0;i<n;i++){
            cin>>a[i];
            sum+=a[i];
+           
         }
 
-        for(i=0;i<n;i++){
-            ll temp = sum-a[i];
-
-            if(temp%2==0){
-                if(a[i]%2==0){
-                    cout<<"YES\n";
-                    return;
-                }
-            }
-            else{
-                if(a[i]%2!=0){
-                    cout<<"YES\n";
-                    return;
-                }
-            }
+        if(sum%2==0){
+            cout<<"Yes\n";
         }
-        cout<<"NO\n";
+        else{
+            cout<<"No\n";
+        }
     }
 };
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     Solution s;
     int tc;
     cin >> tc;

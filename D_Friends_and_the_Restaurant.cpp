@@ -11,47 +11,41 @@ class Solution {
 public:
     void solve()
     {
-        ll n,m,k,i;
-        cin>>n>>m>>k;
+        ll n,i;
+        cin>>n;
         vector<ll>a(n);
         for(i=0;i<n;i++){
            cin>>a[i];
         }
-        vector<ll>b(m);
-        for(i=0;i<m;i++){
+        vector<ll>b(n);
+        for(i=0;i<n;i++){
            cin>>b[i];
         }
-        sort(b.begin(),b.end());
-
-        string s;
-        cin>>s;
-        
-        ll x=0;
-        
-        for(i=0;i<k;i++){
-            if(a[i]=='L'){
-                x--;
+        vector<ll>diff(n);
+        for(i=0;i<n;i++){
+            diff[i]=b[i]-a[i];
+        }
+        sort(diff.begin(),diff.end());
+        ll count = 0;
+        ll right = n-1;
+        ll left=0;
+        while(left<right){
+            if(diff[left]+diff[right]>=0){
+                left++;
+                right--;
+                count++;
             }
             else{
-                x++;
+                left++;
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
+        cout<<count<<endl;
     }
 };
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     Solution s;
     int tc;
     cin >> tc;

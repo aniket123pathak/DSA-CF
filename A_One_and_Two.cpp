@@ -14,33 +14,39 @@ public:
         ll n,i;
         cin>>n;
         vector<ll>a(n);
-        ll sum = 0;
+        ll count2 =0;
         for(i=0;i<n;i++){
            cin>>a[i];
-           sum+=a[i];
+           if(a[i]==2){
+            count2++;
+           }
         }
-
+        if(count2==0){
+            cout<<1<<endl;
+            return;
+        }
+        if(count2%2!=0){
+            cout<<-1<<endl;
+            return;
+        }
+        ll cnt=0;
         for(i=0;i<n;i++){
-            ll temp = sum-a[i];
-
-            if(temp%2==0){
-                if(a[i]%2==0){
-                    cout<<"YES\n";
-                    return;
-                }
+            if(a[i]==2){
+                cnt++;
             }
-            else{
-                if(a[i]%2!=0){
-                    cout<<"YES\n";
-                    return;
-                }
+            if(cnt==count2/2){
+                cout<<i+1<<endl;
+                return;
             }
         }
-        cout<<"NO\n";
+
+
     }
 };
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     Solution s;
     int tc;
     cin >> tc;

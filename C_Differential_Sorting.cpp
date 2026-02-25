@@ -11,47 +11,18 @@ class Solution {
 public:
     void solve()
     {
-        ll n,m,k,i;
-        cin>>n>>m>>k;
+        ll n,i;
+        cin>>n;
         vector<ll>a(n);
         for(i=0;i<n;i++){
            cin>>a[i];
         }
-        vector<ll>b(m);
-        for(i=0;i<m;i++){
-           cin>>b[i];
-        }
-        sort(b.begin(),b.end());
-
-        string s;
-        cin>>s;
-        
-        ll x=0;
-        
-        for(i=0;i<k;i++){
-            if(a[i]=='L'){
-                x--;
-            }
-            else{
-                x++;
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-
     }
 };
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     Solution s;
     int tc;
     cin >> tc;

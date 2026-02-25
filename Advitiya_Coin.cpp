@@ -11,36 +11,36 @@ class Solution {
 public:
     void solve()
     {
-        ll n,i;
-        cin>>n;
+        ll n,k,i;
+        cin>>n>>k;
         vector<ll>a(n);
-        ll sum = 0;
         for(i=0;i<n;i++){
            cin>>a[i];
-           sum+=a[i];
         }
-
+        ll curMn = -1;
+        ll curMx = -1;
+        ll trade = 0;
         for(i=0;i<n;i++){
-            ll temp = sum-a[i];
-
-            if(temp%2==0){
-                if(a[i]%2==0){
-                    cout<<"YES\n";
-                    return;
-                }
+            if(curMn==-1&&curMx==-1){
+                curMn=curMx=a[i];
+            }
+            if(curMx-a[i]-k>0 || a[i]-curMn-k>0){
+                trade++;
+                curMx=curMn=-1;
+                continue;
             }
             else{
-                if(a[i]%2!=0){
-                    cout<<"YES\n";
-                    return;
-                }
+                curMx=max(curMx,a[i]);
+                curMn=min(curMn,a[i]);
             }
         }
-        cout<<"NO\n";
+        cout<<trade<<endl;
     }
 };
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     Solution s;
     int tc;
     cin >> tc;

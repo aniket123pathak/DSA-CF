@@ -11,47 +11,27 @@ class Solution {
 public:
     void solve()
     {
-        ll n,m,k,i;
-        cin>>n>>m>>k;
+        ll n,i,x,y;
+        cin>>n>>x>>y;
         vector<ll>a(n);
         for(i=0;i<n;i++){
            cin>>a[i];
         }
-        vector<ll>b(m);
-        for(i=0;i<m;i++){
-           cin>>b[i];
+        ll sum =0;
+        for(i=0;i<n;i++){
+            sum+=(a[i]/x)*y;
         }
-        sort(b.begin(),b.end());
-
-        string s;
-        cin>>s;
-        
-        ll x=0;
-        
-        for(i=0;i<k;i++){
-            if(a[i]=='L'){
-                x--;
-            }
-            else{
-                x++;
-            }
+        ll mx = 0;
+        for(i=0;i<n;i++){
+            mx=max(mx,sum+a[i]-((a[i]/x)*y));
         }
-
-
-
-
-
-
-
-
-
-
-
-
+        cout<<mx<<endl;
     }
 };
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     Solution s;
     int tc;
     cin >> tc;
@@ -60,4 +40,4 @@ int main() {
         s.solve();
     }
     return 0;
-}
+}   

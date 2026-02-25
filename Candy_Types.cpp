@@ -11,43 +11,22 @@ class Solution {
 public:
     void solve()
     {
-        ll n,m,k,i;
-        cin>>n>>m>>k;
+        ll n,i;
+        cin>>n;
         vector<ll>a(n);
+        vector<ll>hash(101,0);
         for(i=0;i<n;i++){
            cin>>a[i];
+           hash[a[i]]++;
         }
-        vector<ll>b(m);
-        for(i=0;i<m;i++){
-           cin>>b[i];
-        }
-        sort(b.begin(),b.end());
+        ll mx = *max_element(hash.begin(),hash.end());
 
-        string s;
-        cin>>s;
-        
-        ll x=0;
-        
-        for(i=0;i<k;i++){
-            if(a[i]=='L'){
-                x--;
-            }
-            else{
-                x++;
+        for(i=0;i<101;i++){
+            if(mx==hash[i]){
+                cout<<i<<endl;
+                return;
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
     }
 };
 
