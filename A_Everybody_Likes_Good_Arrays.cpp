@@ -14,6 +14,14 @@ public:
         for(i=0;i<n;i++){
            cin>>a[i];
         }
+        ll cnt =0;
+        for(i=0;i<n-1;i++){
+            if((a[i]%2==0&&a[i+1]%2==0)||(a[i]%2!=0&&a[i+1]%2!=0)){
+                cnt++;
+            }
+        }
+        cout<<cnt<<endl;
+        
     }
 };
 
