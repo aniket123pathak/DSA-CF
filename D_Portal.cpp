@@ -55,7 +55,6 @@ public:
             newMid.push_back(mid[i]);
         }
         vector<ll>newLR;
-
         for(i=0;i<left.size();i++){
             newLR.push_back(left[i]);
         }
