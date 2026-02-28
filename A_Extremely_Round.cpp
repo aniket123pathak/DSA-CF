@@ -5,21 +5,10 @@ using namespace std;
 
 class Solution {
 public:
-    vector<ll>valid;
-
-    Solution(){
-        for (ll p=1;p<=99999;p*=10) {
-            for (ll d=1;d<=9;d++) {
-                valid.push_back(d*p);
-            }
-        }
-        sort(valid.begin(),valid.end());
-    }
-
     void solve(){
-        ll n;
+        string n;
         cin>>n;
-        ll ans=upper_bound(valid.begin(),valid.end(),n)-valid.begin();
+        ll ans=(n.length()-1)*9+(n[0]-'0');
         cout<<ans<<"\n";
     }
 };
