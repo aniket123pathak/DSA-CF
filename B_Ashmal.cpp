@@ -33,9 +33,7 @@ class Solution {
                     y="";
                 }
             }
-            
             cout<<k<<endl;
-
         }
 };
 
