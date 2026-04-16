@@ -1,8 +1,5 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
-
 #define ll long long
 #define v(a,n) vector<long long> a(n)
 #define fin(i,x,n,a) for(i=x;i<n;i++) cin>>a[i]
@@ -11,19 +8,25 @@ class Solution {
 public:
     void solve()
     {
-        ll x1,y1,x2,y2,x3,y3,x4,y4;
-        cin>>x1>>x2>>x3>>x4;
-
-        if(x1==x2&&x2==x3&&x3==x4){
-            cout<<"YES\n";
+        ll n,i;
+        cin>>n;
+        vector<ll>a(n);
+        for(i=0;i<n;i++){
+           cin>>a[i];
         }
-        else{
-            cout<<"NO\n";
+        ll count= 0;
+        for(i=0;i<n;i++){
+            if(a[i]<=i+1){
+                count++;
+            }
         }
+        cout<<count<<endl;
     }
 };
 
 int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     Solution s;
     int tc;
     cin >> tc;

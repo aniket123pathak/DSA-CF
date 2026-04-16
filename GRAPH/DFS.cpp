@@ -4,6 +4,17 @@ using namespace std;
 #define v(a,n) vector<long long> a(n)
 #define fin(i,x,n,a) for(i=x;i<n;i++) cin>>a[i]
 
+void DFS(ll sv,vector<ll>& dfs,vector<ll>& visited,vector<vector<ll>>& adj){
+    visited[sv]=1;
+    dfs.push_back(sv);
+
+    for(ll neighbour : adj[sv]){
+        if(visited[neighbour]!=1){
+            DFS(neighbour,dfs,visited,adj);
+        }
+    }
+}
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -16,26 +27,13 @@ int main() {
         al[x].push_back(y);
         al[y].push_back(x);
     }
-    queue<ll>que;
     vector<ll>visited(n+1,0);
-    vector<ll>bfs;
+    vector<ll>dfs;
     ll sv;
     cin>>sv;
-    que.push(sv);
-    visited[sv]=1;
-    while(!que.empty()){
-        ll cur = que.front();
-        que.pop();
-        bfs.push_back(cur);
-        for(ll neighbour : al[cur]){
-            if(visited[neighbour]!=1){
-                que.push(neighbour);
-                visited[neighbour]=1;
-            }
-        }
-    }
-    for(i=0;i<bfs.size();i++){
-        cout<<bfs[i]<<" ";
+    DFS(sv,dfs,visited,al);
+    for(i=0;i<dfs.size();i++){
+        cout<<dfs[i]<<" ";
     }
     return 0;
 }
