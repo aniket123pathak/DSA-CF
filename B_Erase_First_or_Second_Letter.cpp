@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include<set>
 using namespace std;
 
 #define ll long long
@@ -24,8 +25,15 @@ public:
         cin>>n;
         string s;
         cin>>s;
+        set<char>st;
+        ll ans = 0;
 
-
+        for(i=0;i<n;i++){
+            st.insert(s[i]);
+            ans+=st.size();
+        }
+        cout<<ans<<endl;
+        return;
     }
 };
 
