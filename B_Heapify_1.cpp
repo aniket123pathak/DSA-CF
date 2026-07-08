@@ -14,40 +14,24 @@ public:
         for(i=1;i<=n;i++){
            cin>>a[i];
         }
-        if(n%2!=0){
-            if((n+1)/2!=a[(n+1)/2]){
-                cout<<"No\n";
-            }
-            else{
-                cout<<"Yes\n";
-            }
-            return;
-        }
 
-        for(i=1;i<=n;i++){
-            ll temp1 = i;
-            bool check = false;
-            while(temp1*2<=n){
-                if(i==a[temp1]){
-                    check = true;
-                    break;
+        for(ll i=1;i<=n;i+=2){
+            for(ll j=i;j<=n;j*=2){
+                for(ll k=i*2;k<=n;k*=2){   
+                    if(a[k/2]>a[k]){
+                        swap(a[k/2],a[k]);
+                    }
                 }
-                temp1*=2;
-            }
-            ll temp2 = i;
-            while(temp2/2>0){
-                if(i==a[temp2]){
-                    check = true;
-                    break;
-                }
-                temp1/=2;
-            }
-            if(!check){
-                cout<<"No\n";
-                return;
             }
         }
-        cout<<"Yes\n";
+        if(is_sorted(a.begin(),a.end())){
+            cout<<"YES\n";
+        }
+        else{
+            cout<<"NO\n";
+        }
+        
+        return;
     }
 };
 

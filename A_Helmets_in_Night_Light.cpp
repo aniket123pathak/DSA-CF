@@ -19,23 +19,34 @@ public:
         vector<pair<ll,ll>>pr(n);
         for(i=0;i<n;i++){
             cin>>a[i];
-            pr[i].first = a[i];
+            pr[i].second = a[i];
         }
         for(i=0;i<n;i++){
             cin>>b[i];
-            pr[i].second = b[i];
+            pr[i].first = b[i];
         }
-
         sort(pr.begin(),pr.end());
-
+        ll ppl = n-1;
+        ll cst = p;
         for(i=0;i<n;i++){
-            
+            if(pr[i].first<p){
+                if(ppl>=pr[i].second){
+                    ppl-=pr[i].second;
+                    cst+=pr[i].first*pr[i].second;
+                }
+                else{
+                    cst+=ppl*pr[i].first;
+                    ppl=0;
+                }
+            }
+            else{
+                break;
+            }
         }
-
-        ll x= n ;
-        ll cost = p;
-
-
+        if(ppl>0){
+            cst+=ppl*p;
+        }
+        cout<<cst<<endl;
     }
 
 };

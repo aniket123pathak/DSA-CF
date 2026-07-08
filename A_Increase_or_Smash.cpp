@@ -11,9 +11,20 @@ public:
         ll n,i;
         cin>>n;
         vector<ll>a(n);
+        vector<bool>hash(101,false);
         for(i=0;i<n;i++){
            cin>>a[i];
         }
+
+        ll mn = *min_element(a.begin(),a.end());
+        ll cnt = 0;
+        for(i=0;i<n;i++){
+            if(a[i]!=mn && !hash[a[i]]){
+                cnt++;
+                hash[a[i]]=true;
+            }
+        }
+        cout<<cnt*2+1<<endl;
     }
 };
 

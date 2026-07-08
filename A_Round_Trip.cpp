@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 #define ll long long
 #define v(a,n) vector<long long> a(n)
@@ -13,10 +13,20 @@ public:
         string s;
         cin>>s;
 
-
+        ll contest = 0;
         for(i=0;i<n;i++){
-            
+            if(s[i]=='1'){
+                contest++;
+                ro = max((ll)0,ro-d);
+            }
+            else{
+                if(ro<x){
+                    contest++;
+                    ro = max((ll)0,ro-d);
+                }
+            }
         }
+        cout<<contest<<endl;
     }
 };
 

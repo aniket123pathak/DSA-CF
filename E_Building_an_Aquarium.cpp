@@ -21,9 +21,29 @@ public:
         for(i=0;i<n;i++){
            cin>>a[i];
         }
-        sort(a.begin(),a.end());
+        ll left = 1;
+        ll right = 2e9;
+        ll ans = 0;
 
-        
+        while(left<=right){
+            ll mid = left + (right - left)/2;
+
+            ll trapped = 0;
+            for(i=0;i<n;i++){
+                if(mid>a[i]){
+                    trapped+=(mid - a[i]);
+                }
+            }
+            if(trapped>x){
+                right=mid-1;
+            }
+            else{
+                ans=max(ans,mid);
+                left=mid+1;
+            }
+            
+        }
+        cout<<ans<<endl;
 
     }
 };

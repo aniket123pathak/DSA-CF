@@ -17,6 +17,31 @@ public:
         for(i=0;i<n;i++){
            cin>>a[i];
         }
+
+        if(a[n-2]>a[n-1]){
+            cout<<-1<<endl;
+            return;
+        }
+
+        if(a[n-1]<0){
+            if(is_sorted(a.begin(),a.end())){
+                cout<<0<<endl;
+            }
+            else{
+                cout<<-1<<endl;
+            }
+            return;
+        }
+
+        if(a[n-1]>=0){
+            cout<<n-2<<endl;
+            for(i=0;i<n-2;i++){
+                cout<<i+1<<" "<<n-1<<" "<<n<<endl;
+            }
+            return;
+        }
+
+
     }
 };
 

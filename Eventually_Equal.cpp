@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define v(a,n) vector<long long> a(n)
+#define fin(i,x,n,a) for(i=x;i<n;i++) cin>>a[i]
+
+class Solution {
+public:
+    void solve()
+    {
+        ll a,b,c;
+        cin>>a>>b>>c;
+        if(a==b) {
+            cout<<0;
+        } 
+        else if(__gcd(a,c)==__gcd(b,c)){
+            cout<<1;
+        } 
+        else if(__gcd(a,c+1)==__gcd(b,c+1)){
+            cout<<2;
+        } 
+        else{
+            cout<<3;
+        }
+        cout<<endl;
+        
+        return;
+    }
+};
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    Solution s;
+    int tc;
+    cin >> tc;
+    while (tc-- > 0)
+    {
+        s.solve();
+    }
+    return 0;
+}

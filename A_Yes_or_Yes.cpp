@@ -14,21 +14,17 @@ public:
         ll n,i;
         string s;
         cin>>s;
-        n= s.length();
-        ll county=0;
-        ll countn=0;
-
-        for(i=0;i<n;i++){
-            if(s[i]=='Y'){
-                county++;
-                if(county>1){
-                    cout<<"NO\n";
+        if(s[0]=='y'||s[0]=='Y'){
+            if(s[1]=='e'||s[1]=='E'){
+                if(s[2]=='s'||s[2]=='S'){
+                    cout<<"YES\n";
                     return;
                 }
             }
         }
+        cout<<"NO\n";
 
-            cout<<"YES\n";
+          
         
 
     }

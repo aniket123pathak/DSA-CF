@@ -7,23 +7,6 @@ using namespace std;
 #define v(a,n) vector<long long> a(n)
 #define fin(i,x,n,a) for(i=x;i<n;i++) cin>>a[i]
 
-/*
-    if n==1 then contrast zero so one ele in b
-    if contrast == 0 then also one ele in b 
-
-    ex 5 4 2 1 0 0 4 contrast = 9
-    => 5 4 2 1 0 4 contrast 9
-    => 5 0 4 contrast 9
-
-    so if we remove the elements in decending order and ascending also
-    if we have to check both ascending and descending so to avoid overlap 
-    we have to remove the consecative dulicates
-    ..then we may get ans...
-
-
-
-*/
-
 class Solution {
 public:
     void solve()
@@ -34,58 +17,52 @@ public:
         for(i=0;i<n;i++){
            cin>>a[i];
         }
-        vector<ll>b;
-        for(i=0;i<n;i++) {
-            if(i==0||a[i]!=a[i-1]){
-                b.push_back(a[i]);
-            }
-        }
         if(n==1){
-            cout<<"1\n";
+            cout<<1<<endl;
             return;
         }
-        ll contrast = 0 ;
-        for(i=0;i<b.size();i++){
-            contrast+=abs(b[i]-b[i+1]);
+        ll ans=1;
+        ll idx = n;
+        for(i=1;i<n;i++){
+            if(a[i]!=a[0]){
+                idx=i;
+                break;
+            }
         }
-        if(contrast == 0 ){
-            cout<<"1\n";
+        if(idx==n){
+            cout<<1<<endl;
             return;
         }
-        ll cur = 0 ;
-        ll next = 1;
-
-        ll count = 0 ;
-        vector<ll>c;
-
-        while(next<b.size()){   
-            if(b[next-1]>=b[next]){ // 5 4 1 2 0 0 4
-                next++;
+        else{
+            ans++;
+        }
+        bool incresing = false;
+        if(a[idx]>a[0]){
+            incresing = true; 
+        }
+        ll prev = a[idx];
+        for(i=idx+1;i<n;i++){
+            if(incresing){
+                if(a[i]>=prev){
+                }
+                else{
+                    incresing=false;
+                    ans++;
+                }
+                prev=a[i];
             }
             else{
-                count+=max(next-cur-2,(ll)0);
-                cur=next;
-                next++;
+                if(a[i]<=prev){
+                }
+                else{
+                    incresing=true;
+                    ans++;
+                }
+                prev=a[i];
             }
         }
-        cur=0;
-        next=1;
-
-        while(next<b.size()){   
-            if(b[next-1]<=b[next]){ // 5 4 2 1 0 0 4
-                next++;
-            }
-            else{
-                count+=max(next-cur-2,(ll)0);
-                cur=next;
-                next++;
-            }
-        }
-
-        cout<<n-count<<endl;
-
-
-
+        cout<<ans<<endl;
+        
 
     }
 };

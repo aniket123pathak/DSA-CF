@@ -64,28 +64,34 @@ public:
         qpr8.first=xq-b;
         qpr8.second=yq-a;
 
-        set<pair<long long,long long>>st;
+        set<pair<ll,ll>>kSt;
+        set<pair<ll,ll>>qSt;
 
-        st.insert(kpr1);
-        st.insert(kpr2);
-        st.insert(kpr3);
-        st.insert(kpr4);
-        st.insert(kpr5);
-        st.insert(kpr6);
-        st.insert(kpr7);
-        st.insert(kpr8);
-        st.insert(qpr1);
-        st.insert(qpr2);
-        st.insert(qpr3);
-        st.insert(qpr4);
-        st.insert(qpr5);
-        st.insert(qpr6);
-        st.insert(qpr7);
-        st.insert(qpr8);
+        kSt.insert(kpr1);
+        kSt.insert(kpr2);
+        kSt.insert(kpr3);
+        kSt.insert(kpr4);
+        kSt.insert(kpr5);
+        kSt.insert(kpr6);
+        kSt.insert(kpr7);
+        kSt.insert(kpr8);
         
-
+        qSt.insert(qpr1);
+        qSt.insert(qpr2);
+        qSt.insert(qpr3);
+        qSt.insert(qpr4);
+        qSt.insert(qpr5);
+        qSt.insert(qpr6);
+        qSt.insert(qpr7);
+        qSt.insert(qpr8);
         
-        
+        ll ans=0;
+        for(auto pos : kSt) {
+            if(qSt.count(pos)) {
+                ans++;
+            }
+        }
+        cout<<ans<<"\n";
     }
 };
 

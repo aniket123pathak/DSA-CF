@@ -18,31 +18,48 @@ public:
         string s;
         cin>>s;
         if(c=='g'){
-            cout<<"0\n";
+            cout<<0<< "\n";
             return;
         }
-        string newStr=s+s;
-        ll lg = 0;
+        ll lastIdx = 0;
         for(i=n-1;i>=0;i--){
             if(s[i]=='g'){
-                lg=i;
+                lastIdx=i;
                 break;
             }
         }
-        lg=i+n;
-        ll mx = 0;
-        ll left = 0 ;
-        for(i=0;i<n;i++){
+        
+        vector<vector<ll>>pr(n);
+        ll temp = 0;
+        for(i=lastIdx;i<n;i++){
             if(s[i]==c){
-                mx=max(mx,lg-i);
+                pr[temp].push_back(i);
             }
         }
-
-        cout<<lg<<endl;
-
-        
-
-        
+        for(i=0;i<=lastIdx;i++){
+            if(s[i]==c){
+                pr[temp].push_back(i);
+            }
+            else if(s[i]=='g'){
+                pr[temp].push_back(i);
+                temp++;
+            }
+        }
+        ll ans = 0;
+        for(i=0;i<pr.size();i++){
+            if (pr[i].empty()) continue;
+            if(s[pr[i][0]]==c){
+                ll sIdx=pr[i][0];
+                ll eIdx =pr[i].back();
+                if(sIdx>eIdx) {
+                    ans=max(ans,n-sIdx+eIdx);
+                } 
+                else{
+                    ans=max(ans,eIdx-sIdx);
+                }
+            }
+        }
+        cout<<ans<<endl;
 
         
     }
