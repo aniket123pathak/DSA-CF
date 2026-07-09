@@ -18,7 +18,13 @@ public:
         for(i=0;i<n;i++){
            cin>>b[i];
         }
-
+        bool check = false;
+        for(i=0;i<n;i++){
+            if(a[i]<b[i]){
+                check = true;
+                break;
+            }
+        }
         sort(a.rbegin(),a.rend());
         sort(b.rbegin(),b.rend());
 
@@ -28,15 +34,15 @@ public:
                 return;
             }
         }
-        ll ans=0;
-        for(i=0;i<n;i++){
-            if(a[i]>b[i]){
-                cout<<"-1"<<endl;
-                return;
-            }
+        ll ans = 0;
+        if(check){
+            ans = c;
         }
 
-
+        for(i=0;i<n;i++){
+            ans+=a[i]-b[i];
+        }
+        cout<<ans<<endl;        
         return;
     }
 };
