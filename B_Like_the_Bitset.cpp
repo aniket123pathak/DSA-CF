@@ -8,8 +8,43 @@ class Solution {
 public:
     void solve()
     {
-        ll n,i;
-        cin>>n;
+        ll n,i,k;
+        cin>>n>>k;
+        string s;
+        cin>>s;
+
+        ll maxConse = 0;
+        for(i=0;i<n;i++){
+            if(s[i]=='1'){
+                ll temp = 0;
+                while(i<n&&s[i]=='1'){
+                    temp++;
+                    i++;
+                }
+                maxConse = max(maxConse,temp);
+            }
+        }
+        if(maxConse>=k){
+            cout<<"NO\n";
+            return;
+        }
+
+        cout<<"YES\n";
+        ll first = 1;
+        ll last = n;
+
+        for(i=0;i<n;i++){
+            if(s[i]=='0'){
+                cout<<last<<" ";
+                last--;
+            }
+            else{
+                cout<<first<<" ";
+                first++;
+            }
+        }
+        cout<<endl;
+        
         
         
         return;
