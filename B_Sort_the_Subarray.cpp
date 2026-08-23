@@ -14,42 +14,57 @@ public:
         for(i=0;i<n;i++){
            cin>>a[i];
         }
-        vector<ll>b(n);
+        vector<ll>a2(n);
         for(i=0;i<n;i++){
-           cin>>b[i];
+           cin>>a2[i];
         }
-        vector<ll>pr;
+        ll firstDiff = n;
         for(i=0;i<n;i++){
-            if(i==0){
-                pr.push_back(i+1);
-                continue;
+            if(a[i]!=a2[i]){
+                firstDiff = i;
+                break;
             }
-            if(b[i]>=b[i-1]){
-                continue;
+        }
+        if(firstDiff==n){
+            cout<<"1 "<<n<<endl;
+            return;
+        }
+        ll upto = n;
+        for(i=firstDiff;i<n-1;i++){
+            if(a2[i]>a2[i+1]){
+                upto = i;
+                break;
+            }
+        }
+
+        ll l = firstDiff;
+        ll r = upto;
+
+        ll first = firstDiff-1;
+        while(first>=0){
+            if(a2[first]<=a2[first+1]){
+                first--;
             }
             else{
-                pr.push_back(i);
-                if(i!=n-1){
-                    pr.push_back(i);
-                }
-                
+                break;
             }
         }
-        if(b[n-1]>=b[n-2]){
-            pr.push_back(n);
+        l = first+1;
+        if(r==n){
+            r = upto-1;
         }
-        ll mx = 0;
-        for(i=0;i<pr.size();i++){
-            mx = max(mx , pr[i+1]-pr[i]);
-            i++;
-        }
-        for(i=0;i<pr.size();i++){
-            if(mx==pr[i+1]-pr[i]){
-                cout<<pr[i]<<" "<<pr[i+1]<<endl;
-                return;
+        ll second = r+1;
+        while(second<n){
+            if(a2[second]>=a2[second-1]){
+                second++;
+            }
+            else{
+                break;
             }
         }
+        r = second-1;
         
+        cout<<l+1<<" "<<r+1<<endl;
         return;
     }
 };
