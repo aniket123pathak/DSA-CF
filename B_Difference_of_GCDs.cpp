@@ -10,15 +10,29 @@ public:
     {
         ll n,i,l,r;
         cin>>n>>l>>r;
-
-        if(r-l<n){
-            cout<<"NO\n";
-            return;
+        
+        vector<ll>ans(n+1);
+        bool check = true;
+        ans[1] = l;
+        for(i=2;i<=n;i++){
+            ll cur = i;
+            ll x = l/cur;
+            ll now = 0;
+            while(now<l){
+                now = cur*x;
+                x++;
+            }
+            if(now>r){
+                cout<<"NO\n";
+                return;
+            }
+            ans[i]=now;
         }
-
-        
-        
-        
+        cout<<"YES\n";
+        for(i=1;i<=n;i++){
+            cout<<ans[i]<<" ";
+        }
+        cout<<endl;  
         return;
     }
 };
