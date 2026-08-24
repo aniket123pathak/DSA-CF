@@ -8,13 +8,25 @@ class Solution {
 public:
     void solve()
     {
-        ll n,i,x;
-        cin>>n>>x;
+        ll n,i;
+        cin>>n;
         vector<ll>a(n);
+        ll total = 0;
+        ll neg = 0;
+        ll mn = INT64_MAX;
         for(i=0;i<n;i++){
            cin>>a[i];
+           if(a[i]<0){
+            neg++;
+           }
+           mn = min(abs(a[i]),mn);
+           total+=abs(a[i]);
         }
-        
+        if(neg%2==0){
+            cout<<total<<endl;
+            return;
+        }
+        cout<<total - 2*mn<<endl;
         return;
     }
 };
@@ -24,6 +36,10 @@ int main() {
     cin.tie(NULL);
     Solution s;
     int tc;
-    s.solve();
+    cin >> tc;
+    while (tc-- > 0)
+    {
+        s.solve();
+    }
     return 0;
 }
