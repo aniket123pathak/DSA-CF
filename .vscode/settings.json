@@ -13,5 +13,7 @@
         "xstring": "cpp",
         "cmath": "cpp"
     },
-    "C_Cpp.default.compilerPath": "C:/MinGW/bin/g++.exe"
+    "C_Cpp.default.compilerPath": "/opt/homebrew/bin/g++-15",
+    "cph.language.cpp.Command": "g++-15",
+    "cph.language.cpp.Args": "-std=c++17 -O2"
 }
