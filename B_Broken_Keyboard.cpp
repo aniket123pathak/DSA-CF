@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define v(a,n) vector<long long> a(n)
+#define fin(i,x,n,a) for(i=x;i<n;i++) cin>>a[i]
+
+class Solution {
+public:
+    void solve()
+    {
+        ll n,i;
+        cin>>n;
+        string s;
+        cin>>s;
+        bool first = true;
+        bool second = false;
+
+        for(i=0;i<n;i++){
+            if(first){
+                first = false;
+                second = true;
+            }
+            else{
+                if(i==n-1){
+                    cout<<"NO\n";
+                    return;
+                }
+                if(s[i]!=s[i+1]){
+                    cout<<"NO\n";
+                    return;
+                }
+                first = true;
+                second = false;
+                i++;
+            }
+        }
+        cout<<"YES\n";
+        
+        return;
+    }
+};
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    Solution s;
+    int tc;
+    cin >> tc;
+    while (tc-- > 0)
+    {
+        s.solve();
+    }
+    return 0;
+}
