@@ -8,15 +8,39 @@ class Solution {
 public:
     void solve()
     {
-        ll x,y;
-        cin>>x>>y;
-        if(x%y==0){
-            cout<<"YES\n";
+        ll n,i;
+        cin>>n;
+        vector<ll>a(n);
+        ll sum = 0;
+        ll op1 = INT64_MAX;
+        ll op2 = INT64_MAX;
+        for(i=0;i<n;i++){
+           cin>>a[i];
+           sum+=a[i];
+           if(a[i]%2!=0){
+                ll x=a[i];
+                ll cur = 0;
+                while(x%2!=0){
+                    x/=2;
+                    cur++;
+                } 
+                op1 = min(op1,cur);
+           }
+           else{
+                ll x=a[i];
+                ll cur = 0;
+                while(x%2==0){
+                    x/=2;
+                    cur++;
+                } 
+                op2 = min(op2,cur);
+           }
         }
-        else{
-            cout<<"NO\n";
+        if(sum%2==0){
+            cout<<0<<endl;
+            return;
         }
-        
+        cout<<min(op1,op2)<<endl;
         return;
     }
 };
