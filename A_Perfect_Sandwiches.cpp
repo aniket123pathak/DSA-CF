@@ -8,12 +8,33 @@ class Solution {
 public:
     void solve()
     {
-        ll n,i;
-        cin>>n;
-        vector<ll>a(n);
-        for(i=0;i<n;i++){
-           cin>>a[i];
+        ll a,b;
+        cin>>a>>b;
+        // 2 1 2 1. 2 2
+        // 8 7
+        // 2 1 2 1 2 1 2 4
+        // 2 1 2 1 4 5
+        // 2 1 6 6
+        // 8 7
+
+        // 8 6
+        // 2 1 2 1 2 1 2 3
+        // 2 1 2 1 4 4
+        // 2 1 
+        if(a<=b){
+            cout<<-1<<endl;
+            return;
         }
+
+        ll diff=a-b;
+        
+        if(b>a/2){
+            cout<<diff<<endl;
+        }
+        else{
+            cout<<b<<endl;
+        }
+
         
         return;
     }
