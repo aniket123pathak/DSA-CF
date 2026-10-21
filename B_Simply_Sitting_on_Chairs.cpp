@@ -15,9 +15,13 @@ public:
            cin>>a[i];
         }
         ll count= 0;
+        ll mx = -1;
         for(i=0;i<n;i++){
-            if(a[i]<=i+1){
-                count++;
+            if(i+1>mx){
+
+            }
+            else if(){
+
             }
         }
         cout<<count<<endl;

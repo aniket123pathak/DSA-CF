@@ -11,41 +11,9 @@ public:
         ll n,i,j;
         cin>>n;
         vector<ll>a(n);
-        ll cnt1 = 0;
         for(i=0;i<n;i++){
            cin>>a[i];
-           if(a[i]==1){
-            cnt1++;
-           }
         }
-        
-        vector<bool>check(n,false);
-        ll pr = 0;
-        for(i=0;i<n-1;i++){
-            if(a[i]==1 || check[i]){
-                continue;
-            }
-            for(j=i+1;j<n;j++){
-                if(a[j]==1 || check[j]){
-                    continue;
-                }
-                ll gd = __gcd(a[i],a[j]);
-                if(gd==1){
-                    pr++;
-                    check[i]=true;
-                    check[j]=true;
-                    break;
-                }
-            }
-        }
-        if(pr==0 && cnt1==0){
-            cout<<-1<<endl;
-            return;
-        }
-
-        ll rem = n - cnt1 - pr;
-
-        cout<<rem<<endl;
         
         return;
     }

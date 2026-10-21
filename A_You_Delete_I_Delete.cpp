@@ -12,7 +12,21 @@ public:
         string s;
         cin>>s;
         n = s.length();
-        
+        bool check1 = false;
+        bool check2 = false;
+        for(i=0;i<n;i++){
+            if(!check1 && s[i]=='1'){
+                check1 = true;
+                continue;
+            }
+            if(!check2 && s[i]=='0'){
+                check2 = true;
+                continue;
+            }
+            cout<<s[i];
+        }
+        cout<<endl;
+
         return;
     }
 };

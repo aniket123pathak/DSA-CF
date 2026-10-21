@@ -14,7 +14,28 @@ public:
         for(i=0;i<n;i++){
            cin>>a[i];
         }
-        
+        vector<ll>a2 = a;
+        sort(a2.rbegin(),a2.rend());
+        ll cur = 0;
+        vector<ll>s,t;
+        for(i=0;i<n;i++){
+            if(a[i]==a2[cur]){
+                s.push_back(a[i]);
+                cur++;
+            }
+            else{
+                t.push_back(a[i]);
+            }
+        }
+        ll ans = 0;
+        ll sz = t.size();
+        for(i=0;i<sz-1;i++){
+            if(t[i]<t[i+1]){
+                ans++;
+            }
+        }
+        cout<<ans<<endl;
+
         return;
     }
 };

@@ -16,29 +16,7 @@ public:
         for(i=1;i<n;i++){
             arr[i]= (a*arr[i-1]+b)%c;
         }
-        ll ans = 0;
-        ll mn1 = INT64_MAX;
-        ll mn2 = INT64_MAX;
-        for(i=0;i<k;i++){
-            if(arr[i]<mn1){
-                mn2 = mn1;
-                mn1 = arr[i];
-            }
-            else if(arr[i]==mn1){
-                mn2 = arr[i];
-            }
-            else if(arr[i]<mn2){
-                mn2 = arr[i];
-            }
-        }
-        ans = mn1;
-        ll left = 0;
-        for(i=k;i<n;i++){
-            if(arr[i]=1){
-                
-            }
-        }
-        cout<<ans<<endl;
+        
     }
 };
 
